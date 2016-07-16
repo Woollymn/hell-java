@@ -1,0 +1,20 @@
+group 'com.woollymn'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+task runApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = mainClass
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
