@@ -3,17 +3,23 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
+    <filter>
+        <filter-name>default</filter-name>
+        <filter-class>com.example.filter.DefaultFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>default</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
-<!--
-        <servlet-name></servlet-name>
-        <servlet-class></servlet-class>
--->
+        <servlet-name>HellBoardApplication</servlet-name>
+        <servlet-class>com.example.web.HellBoardApplication</servlet-class>
     </servlet>
 
     <servlet-mapping>
-<!--
-        <servlet-name></servlet-name>
-        <url-pattern></url-pattern>
--->
+        <servlet-name>HellBoardApplication</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>
