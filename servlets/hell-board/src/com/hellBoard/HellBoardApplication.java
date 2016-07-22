@@ -1,4 +1,4 @@
-package com.example.web;
+package com.hellBoard;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

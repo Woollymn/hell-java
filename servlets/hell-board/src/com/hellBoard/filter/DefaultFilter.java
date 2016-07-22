@@ -1,4 +1,4 @@
-package com.example.filter;
+package com.hellBoard.filter;
 
 import javax.servlet.*;
 import java.io.IOException;
@@ -21,6 +21,8 @@ public class DefaultFilter implements Filter {
                          ServletResponse servletResponse,
                          FilterChain filterChain)
             throws IOException, ServletException {
+
+        servletRequest.setCharacterEncoding("utf-8");
 
         filterChain.doFilter(servletRequest, servletResponse);
     }
