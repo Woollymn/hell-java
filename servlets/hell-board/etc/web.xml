@@ -28,12 +28,22 @@
 
     <servlet>
         <servlet-name>HellBoardJoin</servlet-name>
-        <servlet-class>com.hellBoard.web.HellBoardJoin</servlet-class>
+        <servlet-class>com.hellBoard.web.Join</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>HellBoardJoin</servlet-name>
         <url-pattern>/join</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HellBoardList</servlet-name>
+        <servlet-class>com.hellBoard.web.List</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HellBoardList</servlet-name>
+        <url-pattern>/list</url-pattern>
     </servlet-mapping>
     <!-- servlet -->
 </web-app>

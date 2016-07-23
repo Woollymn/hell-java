@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by hkkang on 2016. 7. 22..
  */
-public class HellBoardJoin extends HttpServlet {
+public class Join extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req,
                        HttpServletResponse resp)

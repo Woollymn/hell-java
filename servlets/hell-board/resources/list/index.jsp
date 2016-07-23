@@ -51,35 +51,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-6 col-md-6 col-sm-6 col-xs-offset-6 col-md-offset-6 col-sm-offset-6">
-
-            <!-- right view -->
-            <h1 class="col-xs-offset-3 col-md-offset-3 col-sm-offset-3">Hell Board 가입하기!</h1>
-            <form class="form-horizontal" method="POST" action="join">
-                <div class="form-group">
-                    <label for="signUpId" class="col-xs-3 col-md-3 col-sm-3 control-label">아이디</label>
-                    <div class="col-xs-4 col-md-4 col-sm-4">
-                        <input type="text" class="form-control" id="signUpId" placeholder="아이디">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="signUpPassword" class="col-xs-3 col-md-3 col-sm-3 control-label">비밀번호</label>
-                    <div class="col-xs-4 col-md-4 col-sm-4">
-                        <input type="password" class="form-control" id="signUpPassword" placeholder="비밀번호">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="signUpPasswordConfirmation" class="col-xs-3 col-md-3 col-sm-3 control-label">비밀번호 재입력</label>
-                    <div class="col-xs-4 col-md-4 col-sm-4">
-                        <input type="password" class="form-control" id="signUpPasswordConfirmation" placeholder="비밀번호 재입력">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-9 col-md-9 col-sm-9">
-                        <button type="submit" class="btn btn-lg btn-success">가입하기</button>
-                    </div>
-                </div>
-            </form>
+        <div class="text-center">
+            <p>게시판 테이블 그리기</p>
         </div>
     </div>
 </div>

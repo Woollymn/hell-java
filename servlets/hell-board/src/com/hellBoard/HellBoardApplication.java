@@ -17,6 +17,11 @@ public class HellBoardApplication extends HttpServlet {
                       HttpServletResponse resp)
             throws ServletException, IOException {
 
+        /*
+         1. 로그인 상태 체크
+         1-1. 로그인했으면 게시판
+         1-2. 아니면 기본 메인
+         */
         RequestDispatcher view = req.getRequestDispatcher("resources/index.jsp");
         view.forward(req,resp);
     }
