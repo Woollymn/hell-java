@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by hkkang on 2016. 7. 21..
  */
-public class HellBoardApplication extends HttpServlet {
+public class HellBoardServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req,

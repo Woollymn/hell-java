@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by woollymn on 16. 7. 24.
  */
-public class List extends HttpServlet {
+public class ListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp)
