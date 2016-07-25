@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -29,22 +30,30 @@
         <a class="navbar-brand" href="/">Hell Board</a>
 
         <div class="collapse navbar-collapse" id="hell-board-navbar">
-            <form class="form-inline navbar-form navbar-right" role="form">
-                <div class="form-group">
-                    <label class="sr-only" for="signInId">아이디</label>
-                    <input type="email" class="form-control" id="signInId" placeholder="아이디">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="signInPassword">비밀번호</label>
-                    <input type="password" class="form-control" id="signInPassword" placeholder="비밀번호">
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> 로그인 유지
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">로그인</button>
-            </form>
+            <c:choose>
+                <c:when test="${sessionScope.user == null}">
+                    <form class="form-inline navbar-form navbar-right" role="form" method="POST" action="/login">
+                        <div class="form-group">
+                            <label class="sr-only" for="signInId">아이디</label>
+                            <input type="email" class="form-control" id="signInId" placeholder="아이디">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="signInPassword">비밀번호</label>
+                            <input type="password" class="form-control" id="signInPassword" placeholder="비밀번호">
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> 로그인 유지
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">로그인</button>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <span>안녕하세요 ${sessionScope.user.fieldInfo.userName}님!</span>
+                    <span>로그아웃</span>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>
@@ -55,7 +64,7 @@
 
             <!-- right view -->
             <h1 class="col-xs-offset-3 col-md-offset-3 col-sm-offset-3">Hell Board 가입하기!</h1>
-            <form class="form-horizontal" method="POST" action="join">
+            <form class="form-horizontal" method="POST" action="/join">
                 <div class="form-group">
                     <label for="signUpId" class="col-xs-3 col-md-3 col-sm-3 control-label">아이디</label>
                     <div class="col-xs-4 col-md-4 col-sm-4">

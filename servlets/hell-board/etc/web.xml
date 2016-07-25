@@ -1,7 +1,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-         version="2.4">
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_4_0.xsd"
+         version="4.0">
 
     <!-- filter -->
     <filter>
@@ -11,7 +11,8 @@
 
     <filter-mapping>
         <filter-name>HellBoardLoginFilter</filter-name>
-        <url-pattern>/content</url-pattern>
+        <url-pattern>/list/*</url-pattern>
+        <url-pattern>/page/*</url-pattern>
     </filter-mapping>
     <!-- filter -->
 
