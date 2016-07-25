@@ -52,7 +52,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="text-center">
-            <h1><span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span> 가입 완료</h1>
+            <h1>
+                <span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span>
+                <div>가입 완료</div>
+            </h1>
             <p>게시판으로 이동</p>
         </div>
     </div>

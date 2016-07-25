@@ -11,7 +11,7 @@
 
     <filter-mapping>
         <filter-name>HellBoardLoginFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/content</url-pattern>
     </filter-mapping>
     <!-- filter -->
 

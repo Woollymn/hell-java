@@ -32,20 +32,20 @@ public class LoginServlet extends HttpServlet {
                           HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        Map<String, String> messages = new HashMap<String, String>();
+        String signInId = req.getParameter("signInId");
+        String signInPassword = req.getParameter("signInPassword");
+        Map<String, String> messages = new HashMap();
 
-        if (username == null || username.isEmpty()) {
+        if (signInId == null || signInId.isEmpty()) {
             messages.put("username", "Please enter username");
         }
 
-        if (password == null || password.isEmpty()) {
+        if (signInPassword == null || signInPassword.isEmpty()) {
             messages.put("password", "Please enter password");
         }
 
         if (messages.isEmpty()) {
-            User user = userService.find(username, password);
+            User user = userService.find(signInId, signInPassword);
 
             if (user != null) {
                 req.getSession().setAttribute("user", user);
