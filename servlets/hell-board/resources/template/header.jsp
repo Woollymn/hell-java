@@ -30,22 +30,32 @@
         <a class="navbar-brand" href="/">Hell Board</a>
 
         <div class="collapse navbar-collapse" id="hell-board-navbar">
-            <form class="form-inline navbar-form navbar-right" role="form" method="POST" action="/login">
-                <div class="form-group">
-                    <label class="sr-only" for="signInId">아이디</label>
-                    <input type="email" class="form-control" id="signInId" placeholder="아이디">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="signInPassword">비밀번호</label>
-                    <input type="password" class="form-control" id="signInPassword" placeholder="비밀번호">
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> 로그인 유지
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">로그인</button>
-            </form>
+            <c:choose>
+                <c:when test="${sessionScope.user == null}">
+                    <form class="form-inline navbar-form navbar-right" role="form" method="POST" action="/login">
+                        <div class="form-group">
+                            <label class="sr-only" for="signInId">아이디</label>
+                            <input type="text" class="form-control" name="signInId" id="signInId" placeholder="아이디">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="signInPassword">비밀번호</label>
+                            <input type="password" class="form-control" name="signInPassword" id="signInPassword" placeholder="비밀번호">
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> 로그인 유지
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">로그인</button>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <div class="navbar-right">
+                        <span>안녕하세요 ${sessionScope.user.userName}님!</span>
+                        <a href="/logout">로그아웃</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>

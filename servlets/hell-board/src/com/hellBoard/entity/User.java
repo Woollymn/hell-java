@@ -15,6 +15,12 @@ public class User {
 
     private User() {}
 
+    public User(String userId, String password, String userName) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+    }
+
     public static Set<User> getInstance() {
         return users;
     }
@@ -41,5 +47,11 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String toString() {
+        return "userId: " + this.userId + "\n" +
+                "userName: " + this.userName + "\n" +
+                "password: " + this.password;
     }
 }

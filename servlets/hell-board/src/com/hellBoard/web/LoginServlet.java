@@ -1,7 +1,7 @@
 package com.hellBoard.web;
 
 import com.hellBoard.entity.User;
-import com.hellBoard.service.UserService;
+import com.hellBoard.service.LoginService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,15 +16,14 @@ import java.util.Map;
  * Created by woollymn on 16. 7. 25.
  */
 public class LoginServlet extends HttpServlet {
-    private UserService userService;
+    private LoginService loginService = new LoginService();
 
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp)
             throws ServletException, IOException {
 
-        RequestDispatcher view = req.getRequestDispatcher("resources/login/index.jsp");
-        view.forward(req, resp);
+        this.doPost(req, resp);
     }
 
     @Override
@@ -45,11 +44,11 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (messages.isEmpty()) {
-            User user = userService.find(signInId, signInPassword);
+           User user = loginService.findByPassword(signInId, signInPassword);
 
             if (user != null) {
                 req.getSession().setAttribute("user", user);
-                resp.sendRedirect(req.getContextPath() + "/board");
+                resp.sendRedirect(req.getContextPath() + "/list");
                 return;
             } else {
                 messages.put("login", "Unknown login, please try agina");
