@@ -2,6 +2,7 @@ package com.hellBoard.web;
 
 import com.hellBoard.entity.User;
 import com.hellBoard.model.UserDao;
+import com.hellBoard.service.JoinService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +18,10 @@ import java.util.Map;
  * Created by hkkang on 2016. 7. 22..
  */
 public class JoinServlet extends HttpServlet {
+    JoinService joinService = new JoinService();
+
     @Override
-    public void doPost(HttpServletRequest req,
+    protected void doPost(HttpServletRequest req,
                        HttpServletResponse resp)
             throws ServletException, IOException {
 
@@ -40,8 +43,7 @@ public class JoinServlet extends HttpServlet {
         }
 
         if (messages.isEmpty()) {
-            User signUpUser = new User(signUpId, signUpPassword, signUpName);
-            UserDao.createUser(signUpUser);
+            User signUpUser = joinService.addUser(signUpId, signUpPassword, signUpName);
 
             // 세션 저장할 것
             req.getSession().setAttribute("user", signUpUser);

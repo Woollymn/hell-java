@@ -36,11 +36,11 @@ public class LoginServlet extends HttpServlet {
         Map<String, String> messages = new HashMap();
 
         if (signInId == null || signInId.isEmpty()) {
-            messages.put("username", "Please enter username");
+            messages.put("userId", "아이디를 입력하세요.");
         }
 
         if (signInPassword == null || signInPassword.isEmpty()) {
-            messages.put("password", "Please enter password");
+            messages.put("password", "암호를 입력하세요.");
         }
 
         if (messages.isEmpty()) {
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/list");
                 return;
             } else {
-                messages.put("login", "Unknown login, please try agina");
+                messages.put("login", "요청하신 아이디로 로그인할 수 없습니다.");
             }
         }
 

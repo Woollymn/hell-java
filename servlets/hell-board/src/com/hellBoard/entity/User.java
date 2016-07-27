@@ -9,6 +9,7 @@ import java.util.Set;
 public class User {
     private static Set<User> users = new HashSet<>();
 
+    // private Long userNo; // 나중에 추가하자..
     private String userId;
     private String userName;
     private String password;

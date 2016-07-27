@@ -31,14 +31,15 @@ public class UserDao {
         return null;
     }
 
-    public static User updateUser(String userId, User updatedUser) {
-        UserDao.deleteUser(userId);
+    public static User updateUser(User updatedUser) {
+        String userId = updatedUser.getUserId();
+        UserDao.deleteUserByUserId(userId);
         UserDao.createUser(updatedUser);
 
-        return UserDao.findUser(updatedUser.getUserId());
+        return UserDao.findUser(userId);
     }
 
-    public static boolean deleteUser(String userId) {
+    public static boolean deleteUserByUserId(String userId) {
         User user = UserDao.findUser(userId);
 
         return User.getInstance().remove(user);
