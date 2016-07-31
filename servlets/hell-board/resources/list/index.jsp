@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../template/header.jsp" />
 
+<c:set var="contents" value="${requestScope.contens}" />
+
 <div class="container-fluid">
     <div class="row">
         <div class="table-responsive col-xs-10 col-md-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1">
             <div class="text-right">
-                <!-- method put으로 변경해야됨 -->
-                <a class="btn btn-primary btn-sm" href="/content" role="button">글쓰기</a>
+                <a class="btn btn-primary btn-sm" href="/content/create" role="button">글쓰기</a>
             </div>
             <br />
             <table class="table table-bordered table-hover table-condensed">

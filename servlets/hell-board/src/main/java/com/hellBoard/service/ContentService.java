@@ -10,8 +10,8 @@ import java.util.List;
  * Created by hkkang on 2016. 7. 27..
  */
 public class ContentService {
-    public void createContent() {
-
+    public Content createContent(Content newContent) {
+        return ContentDao.createContent(newContent);
     }
 
     public List<Content> findAll() {

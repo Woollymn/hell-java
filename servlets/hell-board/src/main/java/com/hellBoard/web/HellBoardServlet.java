@@ -3,6 +3,7 @@ package main.java.com.hellBoard.web;
 import main.java.com.hellBoard.action.Action;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,54 +18,20 @@ import java.util.*;
  */
 public class HellBoardServlet extends HttpServlet {
     private static Map<String, Action> actionMap = new HashMap<>();
-    final String uri = "WEB-INF/resources/";
 
     @Override
     public void service(HttpServletRequest req,
                         HttpServletResponse resp)
             throws ServletException, IOException {
 
+        final String uri = req.getContextPath() + "/WEB-INF/resources/";
         String requestUri = req.getRequestURI();
-        String httpMethod = req.getMethod();
         List<String> segments = this.getSegments(requestUri);
 
         // action 클래스 호출에 사용
-        req.setAttribute("actionName", this.getActionName(segments));
+        String actionName = this.getActionName(segments);
         // 호출한 action 클래스 내의 메소드 호출에 사용
-        req.setAttribute("actionMethod", this.getActionMethod(segments));
-
-        switch (httpMethod) {
-            case "GET" :
-                // read
-                this.doGet(req, resp);
-            break;
-            case "POST" :
-                // C[R]UD method
-                this.doPost(req, resp);
-            break;
-        }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req,
-                         HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        String actionName = (String) req.getAttribute("actionName");
-        Action action = this.getAction(actionName);
-        String path = action.read(req, resp);
-
-        RequestDispatcher view = req.getRequestDispatcher(this.uri + path);
-        view.forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req,
-                          HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        String actionName = (String) req.getAttribute("actionName");
-        String actionMethod = (String) req.getAttribute("actionMethod");
+        String actionMethod = this.getActionMethod(segments);
 
         Action action = this.getAction(actionName);
         String path = null;
@@ -80,7 +47,7 @@ public class HellBoardServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        RequestDispatcher view = req.getRequestDispatcher(this.uri + path);
+        RequestDispatcher view = req.getRequestDispatcher(uri + path);
         view.forward(req, resp);
     }
 
