@@ -1,6 +1,6 @@
-package com.hellBoard.model;
+package main.java.com.hellBoard.model;
 
-import com.hellBoard.entity.Content;
+import main.java.com.hellBoard.entity.Content;
 
 import java.util.List;
 

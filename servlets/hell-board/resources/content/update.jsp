@@ -39,9 +39,9 @@
             </table>
             <br />
             <div class="text-right">
-                <a class="btn btn-info btn-sm" href="/content?act=u&contentNo=${requestScope.content.contentNo}" role="button">저장</a>
+                <a class="btn btn-info btn-sm" href="//content?act=u&contentNo=${requestScope.content.contentNo}" role="button">저장</a>
                 &nbsp;
-                <a class="btn btn-danger btn-sm" href="/content?contentNo=${requestScope.content.contentNo}" role="button">취소</a>
+                <a class="btn btn-danger btn-sm" href="//content?contentNo=${requestScope.content.contentNo}" role="button">취소</a>
             </div>
         </div>
     </div>

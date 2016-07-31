@@ -1,4 +1,4 @@
-package com.hellBoard.filter;
+package main.java.com.hellBoard.filter;
 
 import javax.servlet.*;
 import java.io.IOException;

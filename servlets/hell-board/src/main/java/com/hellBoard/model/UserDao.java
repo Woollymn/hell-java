@@ -1,6 +1,6 @@
-package com.hellBoard.model;
+package main.java.com.hellBoard.model;
 
-import com.hellBoard.entity.User;
+import main.java.com.hellBoard.entity.User;
 
 import java.util.Set;
 

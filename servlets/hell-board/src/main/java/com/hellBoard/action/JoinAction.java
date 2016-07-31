@@ -1,27 +1,24 @@
-package com.hellBoard.web;
+package main.java.com.hellBoard.action;
 
-import com.hellBoard.entity.User;
-import com.hellBoard.model.UserDao;
-import com.hellBoard.service.JoinService;
+import main.java.com.hellBoard.entity.User;
+import main.java.com.hellBoard.service.JoinService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by hkkang on 2016. 7. 22..
+ * Created by woollymn on 16. 7. 31.
  */
-public class JoinServlet extends HttpServlet {
-    JoinService joinService = new JoinService();
+public class JoinAction extends Action {
+
+    private JoinService joinService = new JoinService();
 
     @Override
-    protected void doPost(HttpServletRequest req,
+    public String read(HttpServletRequest req,
                        HttpServletResponse resp)
             throws ServletException, IOException {
 
@@ -34,15 +31,16 @@ public class JoinServlet extends HttpServlet {
 
         // id, password, passwordconfirmation, name
         if (signUpId == null || signUpId.isEmpty()) {
-            messages.put("username", "Please enter username");
+            messages.put("username", "이름을 입력하세요.");
         }
 
-        if(!signUpPassword.equals(signUpPasswordConfirmation)) {
+        if(signUpPassword == null || !signUpPassword.equals(signUpPasswordConfirmation)) {
             // 잘못된 에러 처리
             messages.put("signUpPassword", "비밀번호가 다릅니다.");
         }
 
         if (messages.isEmpty()) {
+            // 이미 가입했는지 확인 필요
             User signUpUser = joinService.addUser(signUpId, signUpPassword, signUpName);
 
             // 세션 저장할 것
@@ -50,7 +48,7 @@ public class JoinServlet extends HttpServlet {
         }
 
         req.setAttribute("messages", messages);
-        RequestDispatcher view = req.getRequestDispatcher("resources/join/index.jsp");
-        view.forward(req, resp);
+
+        return "join/index.jsp";
     }
 }

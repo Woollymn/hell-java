@@ -1,7 +1,7 @@
-package com.hellBoard.service;
+package main.java.com.hellBoard.service;
 
-import com.hellBoard.entity.User;
-import com.hellBoard.model.UserDao;
+import main.java.com.hellBoard.entity.User;
+import main.java.com.hellBoard.model.UserDao;
 
 /**
  * Created by woollymn on 16. 7. 25.

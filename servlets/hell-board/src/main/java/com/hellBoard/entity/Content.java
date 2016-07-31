@@ -1,4 +1,4 @@
-package com.hellBoard.entity;
+package main.java.com.hellBoard.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.hellBoard.filter;
+package main.java.com.hellBoard.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,19 +17,19 @@ public class LoginFilter implements Filter {
                          FilterChain filterChain)
             throws IOException, ServletException {
 
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-        HttpSession session = request.getSession(false);
-        String mainURI = request.getContextPath() + "/";
+        HttpSession session = req.getSession(false);
+        String mainURI = req.getContextPath() + "/";
 
         boolean loggedIn = session != null && session.getAttribute("user") != null;
-        boolean loginRequest = request.getRequestURI().equals(mainURI);
+        boolean loginRequest = req.getRequestURI().equals(mainURI);
 
         if (loggedIn || loginRequest) {
-            filterChain.doFilter(servletRequest, servletResponse);
+             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            response.sendRedirect(mainURI);
+            resp.sendRedirect(mainURI);
         }
     }
 

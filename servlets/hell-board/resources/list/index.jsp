@@ -1,8 +1,6 @@
-<%@ page import="com.hellBoard.entity.Content" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../template/header.jsp" />
-<c:set var="contentsList" value="<%=Content.getInstance()%>" />
 
 <div class="container-fluid">
     <div class="row">
@@ -24,7 +22,7 @@
                 </thead>
                 <tbody>
                     <c:choose>
-                        <c:when test="${empty contentsList}">
+                        <c:when test="${empty contents}">
                             <tr>
                                 <td colspan="5" class="text-center">
                                     글이 없습니다.
@@ -32,8 +30,8 @@
                             </tr>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="content" items="${contentsList}">
-                                <tr onclick="javascript:location.href='/content?contentNo=${content.contentNo}'">
+                            <c:forEach var="content" items="${contents}">
+                                <tr onclick="javascript:location.href='/content'">
                                     <td>${content.contentNo}</td>
                                     <td>${content.subject}</td>
                                     <td>${content.userId}</td>

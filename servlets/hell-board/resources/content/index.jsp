@@ -6,9 +6,9 @@
     <div class="row">
         <div class="table-responsive col-xs-10 col-md-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1">
             <div class="text-right">
-                <a class="btn btn-info btn-sm" href="/content/modify.do?contentNo=${requestScope.content.contentNo}" role="button">수정</a>
+                <a class="btn btn-info btn-sm" href="/content/modify?contentNo=${requestScope.content.contentNo}" role="button">수정</a>
                 &nbsp;
-                <a class="btn btn-danger btn-sm" href="/content/delete.do" role="button">삭제</a>
+                <a class="btn btn-danger btn-sm" href="/content/delete" role="button">삭제</a>
             </div>
             <br />
             <table class="table table-bordered table-hover table-condensed">
