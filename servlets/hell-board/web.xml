@@ -55,7 +55,4 @@
         <session-timeout>15</session-timeout>
     </session-config>
     <!-- session -->
-
-    <!--  -->
-    <!-- -->
 </web-app>

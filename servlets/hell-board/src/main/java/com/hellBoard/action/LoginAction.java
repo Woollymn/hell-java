@@ -40,7 +40,7 @@ public class LoginAction extends Action {
             if (user != null) {
                 req.getSession().setAttribute("user", user);
 
-                return "list/index.jsp";
+                return "list/redirect.jsp";
             } else {
                 messages.put("login", "요청하신 아이디로 로그인 할 수 없습니다.");
             }
