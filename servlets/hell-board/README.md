@@ -10,6 +10,7 @@
 	* gradle을 붙일수도 있으나 다른걸 공부하는게 귀찮아서 패스.. 다음에 도전해보자.
 * $ javac -classpath /path/to/tomcat/lib/servlet-api.jar:classes:. -d classes src/com/hellBoard/path/to/sourceCode.java
 	* src와 같은 계층에 classes 디렉터리가 있어야 컴파일 가능
+
 ## Action
 * 컨트롤러 역할
 	* 만들다보니 action으로 굳어짐...
@@ -19,7 +20,7 @@
 		* 첫 번째 세그먼트는 클래스명
 		* 두 번째 세그먼트는 첫 번째 클래스 내의 메소드명
 			* uri depth를 더 깊게 파고 싶으나 시간 관계상 패스
-* 메소드 index(Get get)은 필수
+* Action 클래스에서 메소드 index(Get get)은 필수
 	* 메소드명 제한은 없으나 CRUD를 기본 메소드로 제시
 * Action 클래스의 메소드 인자로 HTTP Method를 전달해야 한다.
 	* Restful 흉내
