@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * Created by woollymn on 16. 7. 31.
@@ -63,16 +64,17 @@ public class HellBoardServlet extends HttpServlet {
     }
 
     private String getActionName(List<String> segments) {
-        if(segments.size() > 0) {
-            return segments.get(0);
-        } else {
-            return "main";
-        }
+        return segments
+                .stream()
+                .findFirst()
+                .orElse("main");
     }
 
     private String getActionMethod(List<String> segments) {
-        if(segments.size() > 1) {
-            return segments.get(1);
+        int lastIndex = segments.size() - 1;
+
+        if(!segments.isEmpty() && lastIndex > 0) {
+            return segments.get(lastIndex);
         } else {
             return "read";
         }
@@ -96,7 +98,6 @@ public class HellBoardServlet extends HttpServlet {
 
                 actionMap.put(actionName, action);
             }
-
         } catch (Exception e) {
             // 에러 핸들링 클래스를 만들자..
             if (e instanceof ClassNotFoundException) {

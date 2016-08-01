@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
         boolean loginRequest = req.getRequestURI().equals(mainURI);
 
         if (loggedIn || loginRequest) {
-             filterChain.doFilter(servletRequest, servletResponse);
+            filterChain.doFilter(servletRequest, servletResponse);
         } else {
             resp.sendRedirect(mainURI);
         }

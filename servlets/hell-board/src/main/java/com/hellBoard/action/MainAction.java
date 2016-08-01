@@ -22,7 +22,7 @@ public class MainAction extends Action {
         if (user == null) {
             return "index.jsp";
         } else {
-            return "list/index.jsp";
+            return "list/redirect.jsp";
         }
     }
 }

@@ -52,7 +52,7 @@ public class ContentAction extends Action {
 
                 contentService.createContent(new Content(userId, subject, text, registrationDateTime));
 
-                path = "list/index.jsp";
+                path = "list/redirect.jsp";
                 break;
             default :
                 break;

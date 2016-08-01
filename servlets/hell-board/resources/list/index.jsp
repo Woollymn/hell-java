@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../template/header.jsp" />
 
-<c:set var="contents" value="${requestScope.contens}" />
+<c:set var="contents" value="${requestScope.contents}" scope="request" />
 
 <div class="container-fluid">
     <div class="row">
