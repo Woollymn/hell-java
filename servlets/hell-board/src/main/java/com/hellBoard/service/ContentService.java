@@ -24,9 +24,11 @@ public class ContentService {
 
     public Content viewContentByContentNo(long contentNo) {
         Content content = ContentDao.findContentByContentNo(contentNo);
-        long viewCount = content.getViewCount() + 1;
 
-        content.setViewCount(viewCount);
+        if (content != null) {
+            long viewCount = content.getViewCount() + 1;
+            content.setViewCount(viewCount);
+        }
 
         return content;
     }

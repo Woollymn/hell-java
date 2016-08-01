@@ -1,5 +1,6 @@
 package main.java.com.hellBoard.action;
 
+import main.java.com.hellBoard.entity.Get;
 import main.java.com.hellBoard.entity.User;
 import main.java.com.hellBoard.service.LoginService;
 
@@ -18,10 +19,8 @@ public class LoginAction extends Action {
     private LoginService loginService = new LoginService();
 
     @Override
-    public String read(HttpServletRequest req,
-                       HttpServletResponse resp)
-            throws ServletException, IOException {
-
+    public String index(Get get) {
+        HttpServletRequest req = get.getReq();
         String signInId = req.getParameter("signInId");
         String signInPassword = req.getParameter("signInPassword");
         Map<String, String> messages = new HashMap();

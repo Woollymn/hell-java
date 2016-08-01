@@ -1,5 +1,7 @@
 package main.java.com.hellBoard.action;
 
+import main.java.com.hellBoard.entity.Get;
+import main.java.com.hellBoard.entity.Post;
 import main.java.com.hellBoard.entity.User;
 
 import javax.servlet.ServletException;
@@ -13,9 +15,8 @@ import java.io.IOException;
 public class MainAction extends Action {
 
     @Override
-    public String read(HttpServletRequest req,
-                       HttpServletResponse resp)
-            throws ServletException, IOException {
+    public String index(Get get) {
+        HttpServletRequest req = get.getReq();
 
         User user = (User) req.getSession().getAttribute("user");
 

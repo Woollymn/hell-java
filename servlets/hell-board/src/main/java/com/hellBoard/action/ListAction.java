@@ -1,6 +1,7 @@
 package main.java.com.hellBoard.action;
 
 import main.java.com.hellBoard.entity.Content;
+import main.java.com.hellBoard.entity.Get;
 import main.java.com.hellBoard.service.ContentService;
 
 import javax.servlet.ServletException;
@@ -17,10 +18,8 @@ public class ListAction extends Action {
     ContentService contentService = new ContentService();
 
     @Override
-    public String read(HttpServletRequest req,
-                       HttpServletResponse resp)
-            throws ServletException, IOException {
-
+    public String index(Get get) {
+        HttpServletRequest req = get.getReq();
         List<Content> contents = contentService.findAll();
 
         req.setAttribute("contents", contents);

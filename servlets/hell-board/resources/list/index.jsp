@@ -32,7 +32,7 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="content" items="${contents}">
-                                <tr onclick="javascript:location.href='/content'">
+                                <tr onclick="javascript:location.href='/content?contentNo=${content.contentNo}'">
                                     <td>${content.contentNo}</td>
                                     <td>${content.subject}</td>
                                     <td>${content.userId}</td>

@@ -1,5 +1,7 @@
 package main.java.com.hellBoard.action;
 
+import main.java.com.hellBoard.entity.Get;
+import main.java.com.hellBoard.entity.Post;
 import main.java.com.hellBoard.entity.User;
 import main.java.com.hellBoard.service.JoinService;
 
@@ -18,10 +20,16 @@ public class JoinAction extends Action {
     private JoinService joinService = new JoinService();
 
     @Override
-    public String read(HttpServletRequest req,
-                       HttpServletResponse resp)
-            throws ServletException, IOException {
+    public String index(Get get) {
+        return this.process(get.getReq());
+    }
 
+    @Override
+    public String index(Post post) {
+        return this.process(post.getReq());
+    }
+
+    private String process(HttpServletRequest req) {
         String signUpId = req.getParameter("signUpId");
         String signUpPassword = req.getParameter("signUpPassword");
         String signUpPasswordConfirmation = req.getParameter("signUpPasswordConfirmation");
