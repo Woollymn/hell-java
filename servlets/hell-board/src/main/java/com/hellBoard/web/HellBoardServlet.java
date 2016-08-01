@@ -30,9 +30,7 @@ public class HellBoardServlet extends HttpServlet {
 
         final String uri = req.getContextPath() + "/WEB-INF/resources/";
         String requestUri = req.getRequestURI();
-        HttpMethod httpMethod = this.getHttpMethod(req, resp);
         List<String> segments = this.getSegments(requestUri);
-
         // 호출할 action 클래스명
         String actionClassName = this.getActionName(segments);
         // action 클래스에서 호출할 메소드명
@@ -40,24 +38,11 @@ public class HellBoardServlet extends HttpServlet {
         // action 객체 가져오기
         Action action = this.getAction(actionClassName);
         // action 객체 내 메소드 실행
+        HttpMethod httpMethod = this.getHttpMethod(req, resp);
         String path = this.getPathFromActionMethod(action, actionMethodName, httpMethod);
 
         RequestDispatcher view = req.getRequestDispatcher(uri + path);
         view.forward(req, resp);
-    }
-
-    private HttpMethod getHttpMethod(HttpServletRequest req,
-                                     HttpServletResponse resp) {
-        String httpMethod = req.getMethod();
-
-        if ("GET".equals(httpMethod)) {
-            return new Get(req, resp);
-        } else if ("POST".equals(httpMethod)) {
-            return new Post(req, resp);
-        }
-
-        // default
-        return new Get(req, resp);
     }
 
     private List<String> getSegments(String requestUri) {
@@ -102,6 +87,7 @@ public class HellBoardServlet extends HttpServlet {
             } else {
                 String actualClassName = this.capitalize(actionClassName) + "Action";
                 Class actionClass = Class.forName("main.java.com.hellBoard.action." + actualClassName);
+
                 action = (Action) actionClass.newInstance();
 
                 actionMap.put(actionClassName, action);
@@ -122,6 +108,20 @@ public class HellBoardServlet extends HttpServlet {
         return action;
     }
 
+    private HttpMethod getHttpMethod(HttpServletRequest req,
+                                     HttpServletResponse resp) {
+        String httpMethod = req.getMethod();
+
+        if ("GET".equals(httpMethod)) {
+            return new Get(req, resp);
+        } else if ("POST".equals(httpMethod)) {
+            return new Post(req, resp);
+        }
+
+        // default
+        return new Get(req, resp);
+    }
+
     private String getPathFromActionMethod(Action action,
                                            String actionMethodName,
                                            HttpMethod httpMethod) {
@@ -129,12 +129,7 @@ public class HellBoardServlet extends HttpServlet {
 
         try {
             Method method = action.getClass().getMethod(actionMethodName, httpMethod.getClass());
-
-            if (method.isAccessible()) {
-                path = (String) method.invoke(action, httpMethod);
-            } else {
-                path = "index.jsp";
-            }
+            path = (String) method.invoke(action, httpMethod);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

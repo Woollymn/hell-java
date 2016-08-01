@@ -1,6 +1,7 @@
 package main.java.com.hellBoard.action;
 
 import main.java.com.hellBoard.entity.Get;
+import main.java.com.hellBoard.entity.Post;
 import main.java.com.hellBoard.entity.User;
 import main.java.com.hellBoard.service.LoginService;
 
@@ -20,7 +21,12 @@ public class LoginAction extends Action {
 
     @Override
     public String index(Get get) {
-        HttpServletRequest req = get.getReq();
+        return "redirect.jsp";
+    }
+
+    @Override
+    public String index(Post post) {
+        HttpServletRequest req = post.getReq();
         String signInId = req.getParameter("signInId");
         String signInPassword = req.getParameter("signInPassword");
         Map<String, String> messages = new HashMap();

@@ -17,12 +17,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="active">글번호</th>
-                            <td></td>
-                            <th class="active">조회수</th>
-                            <td></td>
-                        </tr>
-                        <tr>
                             <th class="active">내용</th>
                             <td colspan="3">
                                 <textarea class="form-control" name="text" rows="5"></textarea>
@@ -31,10 +25,6 @@
                         <tr>
                             <th class="active">작성자</th>
                             <td colspan="3">${requestScope.content.userId}</td>
-                        </tr>
-                        <tr>
-                            <th class="active">작성시간</th>
-                            <td colspan="3"></td>
                         </tr>
                     </tbody>
                 </table>

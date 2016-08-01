@@ -32,4 +32,12 @@ public class ContentService {
 
         return content;
     }
+
+    public void updateContent(Content content) {
+        ContentDao.updateContent(content);
+    }
+
+    public boolean deleteContentByContentNo(long contentNo) {
+        return ContentDao.deleteContentByContentNo(contentNo);
+    }
 }

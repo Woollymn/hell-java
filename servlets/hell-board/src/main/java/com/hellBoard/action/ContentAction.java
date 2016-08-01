@@ -55,7 +55,6 @@ public class ContentAction extends Action {
     public String create(Post post) {
         HttpServletRequest req = post.getReq();
 
-        // 게시물 등록
         User user = (User) req.getSession().getAttribute("user");
         String userId = user.getUserId();
         String subject = req.getParameter("subject");
@@ -71,11 +70,65 @@ public class ContentAction extends Action {
     public String update(Get get) {
         HttpServletRequest req = get.getReq();
 
-        return "";
+        String contentNo = req.getParameter("contentNo");
+        Content content = null;
+
+        // 본인 확인도 필요!
+        if (contentNo != null) {
+            content = contentService.findContentByContentNo(Long.parseLong(contentNo));
+        }
+
+        if (content != null) {
+            req.setAttribute("content", content);
+
+            return "content/update.jsp";
+        } else {
+            return "list/redirect.jsp";
+        }
+    }
+
+    @Override
+    public String update(Post post) {
+        HttpServletRequest req = post.getReq();
+
+        String contentNo = req.getParameter("contentNo");
+        String subject = req.getParameter("subject");
+        String text = req.getParameter("text");
+
+        // 본인 확인도 필요!
+        if (contentNo != null) {
+            Content content = contentService.findContentByContentNo(Long.parseLong(contentNo));
+            content.setSubject(subject);
+            content.setText(text);
+
+            contentService.updateContent(content);
+        }
+
+        return "list/redirect.jsp";
     }
 
     @Override
     public String delete(Get get) {
-        return "";
+        return this.deleteProcess(get.getReq());
+    }
+
+    @Override
+    public String delete(Post post) {
+        return this.deleteProcess(post.getReq());
+    }
+
+    private String deleteProcess(HttpServletRequest req) {
+        String contentNo = req.getParameter("contentNo");
+        boolean isDeleted = false;
+
+        if (contentNo != null) {
+            isDeleted = contentService.deleteContentByContentNo(Long.parseLong(contentNo));
+        }
+
+        if (!isDeleted) {
+            // 에러처리 메시지
+        }
+
+        return "list/redirect.jsp";
     }
 }

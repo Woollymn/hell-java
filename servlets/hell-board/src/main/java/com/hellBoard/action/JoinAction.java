@@ -21,15 +21,12 @@ public class JoinAction extends Action {
 
     @Override
     public String index(Get get) {
-        return this.process(get.getReq());
+        return "redirect.jsp";
     }
 
     @Override
     public String index(Post post) {
-        return this.process(post.getReq());
-    }
-
-    private String process(HttpServletRequest req) {
+        HttpServletRequest req = post.getReq();
         String signUpId = req.getParameter("signUpId");
         String signUpPassword = req.getParameter("signUpPassword");
         String signUpPasswordConfirmation = req.getParameter("signUpPasswordConfirmation");
