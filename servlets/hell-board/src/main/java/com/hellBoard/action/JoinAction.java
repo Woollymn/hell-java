@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class JoinAction extends Action {
     }
 
     @Override
-    public String index(Post post) {
+    public String index(Post post) throws SQLException {
         HttpServletRequest req = post.getReq();
         String signUpId = req.getParameter("signUpId");
         String signUpPassword = req.getParameter("signUpPassword");

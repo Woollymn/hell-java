@@ -2,15 +2,23 @@ package main.java.com.hellBoard.model;
 
 import main.java.com.hellBoard.entity.Content;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 /**
  * Created by hkkang on 2016. 7. 27..
  */
 public class ContentDao {
-    /*
-    CRUD
-     */
+    private DataSource dataSource;
+
+    public ContentDao() {
+
+    }
+
+    public ContentDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     public static Content createContent(Content content) {
         Content.getInstance().add(content);
 

@@ -2,24 +2,38 @@ package main.java.com.hellBoard.model;
 
 import main.java.com.hellBoard.entity.User;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Set;
 
 /**
  * Created by hkkang on 2016. 7. 25..
  */
 public class UserDao {
-    /*
-     * CRUD
-     * Exception 처리가 부족..
-     * Collection에 user가 없는데 CRUD 처리를 시도하면?
-     */
-    public static User createUser(User user) {
+    private DataSource dataSource;
+
+    private UserDao() {}
+
+    public static UserDao userDao(DataSource dataSource) {
+        UserDao userDao = new UserDao();
+        userDao.setDataSource(dataSource);
+
+        return userDao;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public User createUser(User user) throws SQLException {
+        Connection c = this.dataSource.getConnection();
         User.getInstance().add(user);
 
         return user;
     }
 
-    public static User findUser(String userId) {
+    public User findUser(String userId) {
         Set<User> users = User.getInstance();
 
         for(User user : users) {
@@ -31,16 +45,16 @@ public class UserDao {
         return null;
     }
 
-    public static User updateUser(User updatedUser) {
+    public User updateUser(User updatedUser) throws SQLException {
         String userId = updatedUser.getUserId();
-        UserDao.deleteUserByUserId(userId);
-        UserDao.createUser(updatedUser);
+        this.deleteUserByUserId(userId);
+        this.createUser(updatedUser);
 
-        return UserDao.findUser(userId);
+        return this.findUser(userId);
     }
 
-    public static boolean deleteUserByUserId(String userId) {
-        User user = UserDao.findUser(userId);
+    public boolean deleteUserByUserId(String userId) {
+        User user = this.findUser(userId);
 
         return User.getInstance().remove(user);
     }
