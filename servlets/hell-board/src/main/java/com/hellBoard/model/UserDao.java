@@ -4,6 +4,7 @@ import main.java.com.hellBoard.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Set;
 
@@ -15,9 +16,9 @@ public class UserDao {
 
     private UserDao() {}
 
-    public static UserDao userDao(DataSource dataSource) {
+    public UserDao userDao(DataSource dataSource) {
         UserDao userDao = new UserDao();
-        userDao.setDataSource(dataSource);
+        this.setDataSource(dataSource);
 
         return userDao;
     }
@@ -27,8 +28,10 @@ public class UserDao {
     }
 
     public User createUser(User user) throws SQLException {
-        Connection c = this.dataSource.getConnection();
-        User.getInstance().add(user);
+        //User.getInstance().add(user);
+
+        StatementStrategy st = new UserDaoCreateUser();
+        jdbcContextWithStatementStrategy(st);
 
         return user;
     }
@@ -57,5 +60,23 @@ public class UserDao {
         User user = this.findUser(userId);
 
         return User.getInstance().remove(user);
+    }
+
+    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
+        Connection c = null;
+        PreparedStatement ps = null;
+
+        try {
+
+            c = this.dataSource.getConnection();
+            ps = stmt.makePreparedStatement(c);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (ps != null) { try { ps.close(); } catch (SQLException e) {} }
+            if (c != null) { try { c.close(); } catch (SQLException e) {} }
+        }
     }
 }
