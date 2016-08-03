@@ -5,6 +5,7 @@ import main.java.com.hellBoard.entity.User;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -18,29 +19,64 @@ public class JdbcContext {
         this.dataSource = dataSource;
     }
 
-    public void workWithStatementStrategy(StatementStrategy stmt) {
+    public User workWithStatementStrategy(StatementStrategy stmt) {
+
+        User user = null;
+
         try (Connection c = this.dataSource.getConnection();
              PreparedStatement ps = stmt.makePreparedStatement(c)) {
-            ps.executeUpdate();
+
+            ResultSet rs = ps.executeQuery();
+
+            user = new User(rs.getLong("userNo"),
+                    rs.getString("userId"),
+                    rs.getString("password"),
+                    rs.getString("userName"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return user;
     }
 
-    // boolean으로 결과값 변경 필요할 듯
-    public void executeSql(final String query) {
-        this.workWithStatementStrategy(c -> c.prepareStatement(query));
+    public int executeUpdate(StatementStrategy stmt) {
+
+        int rs = 0;
+
+        try (Connection c = this.dataSource.getConnection();
+             PreparedStatement ps = stmt.makePreparedStatement(c)) {
+
+            rs = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
     }
 
-    // boolean으로 결과값 변경 필요할 듯
-    public void executeSqlFromObject(String query, Object object) {
-        this.workWithStatementStrategy(
+    public int executeSql(final String query) {
+        return this.executeUpdate(
             c -> {
                 PreparedStatement ps = c.prepareStatement(query);
 
-                ps.setString(1, ((User) object).getUserId());
-                ps.setString(2, ((User) object).getUserName());
-                ps.setString(3, ((User) object).getPassword());
+                ps.setString(1, "admin1");
+                ps.setString(2, "관리자");
+                ps.setString(3, "1234");
+
+                return ps;
+            }
+        );
+    }
+
+    public User executeSqlFromObject(final String query, final Object object) {
+        return this.workWithStatementStrategy(
+            c -> {
+                PreparedStatement ps = c.prepareStatement(query);
+
+                ps.setString(1, ((User)object).getUserId());
+                ps.setString(2, ((User)object).getPassword());
 
                 return ps;
             }

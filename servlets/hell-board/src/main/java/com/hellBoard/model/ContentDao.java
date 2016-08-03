@@ -10,6 +10,10 @@ import java.util.List;
  */
 public class ContentDao extends Dao {
 
+    public ContentDao(DataSource dataSource) {
+        super(dataSource);
+    }
+
     public Content createContent(Content content) {
         //Content.getInstance().add(content);
         this.jdbcContext.executeSqlFromObject("", content);

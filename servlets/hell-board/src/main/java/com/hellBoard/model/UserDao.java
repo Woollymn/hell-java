@@ -5,6 +5,7 @@ import main.java.com.hellBoard.entity.User;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
@@ -13,36 +14,44 @@ import java.util.Set;
  */
 public class UserDao extends Dao {
 
-    public User createUser(final User user) throws SQLException {
+    public UserDao(DataSource dataSource) {
+        super(dataSource);
+    }
+
+    public int createUser(final User user) throws SQLException {
         //User.getInstance().add(user);
-        this.jdbcContext.executeSqlFromObject("INSERT INTO users(id, name, password) VALUES(?, ?, ?)", user);
-
-        return user;
+        return this.jdbcContext.executeSql(
+                String.join("\n"
+                        , "INSERT INTO PUBLIC.USER(userId, userName, password)"
+                        , "VALUES (?, ?, ?)"
+                )
+        );
     }
 
-    public User findUser(final String userId) {
-        Set<User> users = User.getInstance();
-
-        for(User user : users) {
-            if (userId.equals(user.getUserId())) {
-                return user;
-            }
-        }
-
-        return null;
+    public User findUser(final User user) {
+        return this.jdbcContext.executeSqlFromObject(
+                String.join("\n"
+                        , "SELECT userNo, userId, userName, password"
+                        , "  FROM PUBLIC.USER"
+                        , " WHERE userId = ?"
+                        , "   AND password = ?"
+                ), user
+        );
     }
-
+/*
     public User updateUser(final User updatedUser) throws SQLException {
         String userId = updatedUser.getUserId();
-        this.deleteUserByUserId(userId);
+        String userPassword = updatedUser.getPassword();
+        this.deleteUserByUserId(userId, userPassword);
         this.createUser(updatedUser);
 
         return this.findUser(userId);
     }
 
-    public boolean deleteUserByUserId(final String userId) {
-        User user = this.findUser(userId);
+    public boolean deleteUserByUserId(final String userId, final String userPassword) {
+        User user = this.findUser(userId, userPassword);
 
         return User.getInstance().remove(user);
     }
+*/
 }

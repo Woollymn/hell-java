@@ -9,17 +9,27 @@ import java.util.Set;
 public class User {
     private static Set<User> users = new HashSet<>();
 
-    // private Long userNo; // 나중에 추가하자..
+    private long userNo;
     private String userId;
     private String userName;
     private String password;
 
     private User() {}
 
-    public User(String userId, String password, String userName) {
+    public User(String userId, String password) {
         this.userId = userId;
-        this.userName = userName;
         this.password = password;
+        this.userName = "";
+    }
+
+    public User(String userId, String password, String userName) {
+        this(userId, userName);
+        this.password = password;
+    }
+
+    public User(long userNo, String userId, String password, String userName) {
+        this(userId, password, userName);
+        this.userNo = userNo;
     }
 
     public static Set<User> getInstance() {
@@ -54,5 +64,9 @@ public class User {
         return "userId: " + this.userId + "\n" +
                 "userName: " + this.userName + "\n" +
                 "password: " + this.password;
+    }
+
+    public long getUserNo() {
+        return userNo;
     }
 }

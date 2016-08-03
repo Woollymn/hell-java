@@ -18,7 +18,6 @@ public class JoinService {
             throws SQLException {
 
         User signUpUser = new User(signUpId, signUpPassword, signUpName);
-        this.userDao.createUser(signUpUser);
 
         return signUpUser;
     }

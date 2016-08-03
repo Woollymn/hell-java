@@ -10,11 +10,11 @@ import javax.sql.DataSource;
 public class DaoFactory {
 
     public UserDao userDao() {
-        return (UserDao) new Dao(this.dataSource());
+        return new UserDao(this.dataSource());
     }
 
     public ContentDao contentDao() {
-        return (ContentDao) new Dao(this.dataSource());
+        return new ContentDao(this.dataSource());
     }
 
     private DataSource dataSource() {

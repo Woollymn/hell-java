@@ -12,7 +12,7 @@ public class LoginService {
 
     public User findByPassword(String userId, String userPassword) {
 
-        User findedUser = this.userDao.findUser(userId);
+        User findedUser = this.userDao.findUser(new User(userId, userPassword));
 
         if (findedUser == null) {
             // 에러처리
