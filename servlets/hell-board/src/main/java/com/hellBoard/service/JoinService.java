@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * Created by hkkang on 2016. 7. 27..
  */
 public class JoinService {
-    private UserDao userDao = DaoFactory.getInstance().userDao();
+    private UserDao userDao = new DaoFactory().userDao();
 
     public User addUser(String signUpId,
                         String signUpPassword,

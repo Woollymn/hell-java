@@ -1,13 +1,9 @@
 package main.java.com.hellBoard.action;
 
-import main.java.com.hellBoard.entity.Get;
-import main.java.com.hellBoard.entity.Post;
+import main.java.com.hellBoard.util.http.Get;
+import main.java.com.hellBoard.util.http.Post;
 
-import javax.servlet.ServletException;
-import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by woollymn on 16. 7. 31.

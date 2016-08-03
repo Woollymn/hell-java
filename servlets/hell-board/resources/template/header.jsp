@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="user" value="${sessionScope.user}" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,7 +35,7 @@
 
         <div class="collapse navbar-collapse" id="hell-board-navbar">
             <c:choose>
-                <c:when test="${sessionScope.user == null}">
+                <c:when test="${empty user}">
                     <form class="form-inline navbar-form navbar-right" role="form" method="POST" action="/login">
                         <div class="form-group">
                             <label class="sr-only" for="signInId">아이디</label>
@@ -52,7 +55,7 @@
                 </c:when>
                 <c:otherwise>
                     <div class="navbar-right">
-                        <span>안녕하세요 ${sessionScope.user.userName}님!</span>
+                        <span>안녕하세요 ${user.userName}님!</span>
                         <a href="/logout">로그아웃</a>
                     </div>
                 </c:otherwise>

@@ -11,32 +11,16 @@ import java.util.Set;
 /**
  * Created by hkkang on 2016. 7. 25..
  */
-public class UserDao {
-    private DataSource dataSource;
+public class UserDao extends Dao {
 
-    private UserDao() {}
-
-    public UserDao userDao(DataSource dataSource) {
-        UserDao userDao = new UserDao();
-        this.setDataSource(dataSource);
-
-        return userDao;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public User createUser(User user) throws SQLException {
+    public User createUser(final User user) throws SQLException {
         //User.getInstance().add(user);
-
-        StatementStrategy st = new UserDaoCreateUser();
-        jdbcContextWithStatementStrategy(st);
+        this.jdbcContext.executeSqlFromObject("INSERT INTO users(id, name, password) VALUES(?, ?, ?)", user);
 
         return user;
     }
 
-    public User findUser(String userId) {
+    public User findUser(final String userId) {
         Set<User> users = User.getInstance();
 
         for(User user : users) {
@@ -48,7 +32,7 @@ public class UserDao {
         return null;
     }
 
-    public User updateUser(User updatedUser) throws SQLException {
+    public User updateUser(final User updatedUser) throws SQLException {
         String userId = updatedUser.getUserId();
         this.deleteUserByUserId(userId);
         this.createUser(updatedUser);
@@ -56,27 +40,9 @@ public class UserDao {
         return this.findUser(userId);
     }
 
-    public boolean deleteUserByUserId(String userId) {
+    public boolean deleteUserByUserId(final String userId) {
         User user = this.findUser(userId);
 
         return User.getInstance().remove(user);
-    }
-
-    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
-        Connection c = null;
-        PreparedStatement ps = null;
-
-        try {
-
-            c = this.dataSource.getConnection();
-            ps = stmt.makePreparedStatement(c);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            if (ps != null) { try { ps.close(); } catch (SQLException e) {} }
-            if (c != null) { try { c.close(); } catch (SQLException e) {} }
-        }
     }
 }

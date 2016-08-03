@@ -1,14 +1,11 @@
 package main.java.com.hellBoard.action;
 
-import main.java.com.hellBoard.entity.Get;
-import main.java.com.hellBoard.entity.Post;
+import main.java.com.hellBoard.util.http.Get;
+import main.java.com.hellBoard.util.http.Post;
 import main.java.com.hellBoard.entity.User;
 import main.java.com.hellBoard.service.JoinService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;

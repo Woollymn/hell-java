@@ -1,4 +1,4 @@
-package main.java.com.hellBoard.entity;
+package main.java.com.hellBoard.util.http;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

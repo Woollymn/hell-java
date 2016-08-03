@@ -1,12 +1,11 @@
 package main.java.com.hellBoard.web;
 
 import main.java.com.hellBoard.action.Action;
-import main.java.com.hellBoard.entity.Get;
-import main.java.com.hellBoard.entity.HttpMethod;
-import main.java.com.hellBoard.entity.Post;
+import main.java.com.hellBoard.util.http.Get;
+import main.java.com.hellBoard.util.http.HttpMethod;
+import main.java.com.hellBoard.util.http.Post;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.IntStream;
 
 /**
  * Created by woollymn on 16. 7. 31.
@@ -29,17 +27,17 @@ public class HellBoardServlet extends HttpServlet {
             throws ServletException, IOException {
 
         final String uri = req.getContextPath() + "/WEB-INF/resources/";
-        String requestUri = req.getRequestURI();
-        List<String> segments = this.getSegments(requestUri);
+        final String requestUri = req.getRequestURI();
+        final List<String> segments = this.getSegments(requestUri);
         // 호출할 action 클래스명
-        String actionClassName = this.getActionName(segments);
+        final String actionClassName = this.getActionName(segments);
         // action 클래스에서 호출할 메소드명
-        String actionMethodName = this.getActionMethod(segments);
+        final String actionMethodName = this.getActionMethod(segments);
         // action 객체 가져오기
-        Action action = this.getAction(actionClassName);
+        final Action action = this.getAction(actionClassName);
         // action 객체 내 메소드 실행
-        HttpMethod httpMethod = this.getHttpMethod(req, resp);
-        String path = this.getPathFromActionMethod(action, actionMethodName, httpMethod);
+        final HttpMethod httpMethod = this.getHttpMethod(req, resp);
+        final String path = this.getPathFromActionMethod(action, actionMethodName, httpMethod);
 
         RequestDispatcher view = req.getRequestDispatcher(uri + path);
         view.forward(req, resp);

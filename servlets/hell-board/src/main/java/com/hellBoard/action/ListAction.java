@@ -1,13 +1,10 @@
 package main.java.com.hellBoard.action;
 
 import main.java.com.hellBoard.entity.Content;
-import main.java.com.hellBoard.entity.Get;
+import main.java.com.hellBoard.util.http.Get;
 import main.java.com.hellBoard.service.ContentService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 /**

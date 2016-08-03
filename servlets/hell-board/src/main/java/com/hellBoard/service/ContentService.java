@@ -2,6 +2,7 @@ package main.java.com.hellBoard.service;
 
 import main.java.com.hellBoard.entity.Content;
 import main.java.com.hellBoard.model.ContentDao;
+import main.java.com.hellBoard.model.DaoFactory;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
  * Created by hkkang on 2016. 7. 27..
  */
 public class ContentService {
+    private ContentDao contentDao = new DaoFactory().contentDao();
+
     public Content createContent(Content newContent) {
-        return ContentDao.createContent(newContent);
+        return this.contentDao.createContent(newContent);
     }
 
     public List<Content> findAll() {
@@ -19,11 +22,11 @@ public class ContentService {
     }
 
     public Content findContentByContentNo(long contentNo) {
-        return ContentDao.findContentByContentNo(contentNo);
+        return this.contentDao.findContentByContentNo(contentNo);
     }
 
     public Content viewContentByContentNo(long contentNo) {
-        Content content = ContentDao.findContentByContentNo(contentNo);
+        Content content = this.contentDao.findContentByContentNo(contentNo);
 
         if (content != null) {
             long viewCount = content.getViewCount() + 1;
@@ -34,10 +37,10 @@ public class ContentService {
     }
 
     public void updateContent(Content content) {
-        ContentDao.updateContent(content);
+        this.contentDao.updateContent(content);
     }
 
     public boolean deleteContentByContentNo(long contentNo) {
-        return ContentDao.deleteContentByContentNo(contentNo);
+        return this.contentDao.deleteContentByContentNo(contentNo);
     }
 }

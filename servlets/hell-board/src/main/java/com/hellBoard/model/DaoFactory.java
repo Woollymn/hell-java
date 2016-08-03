@@ -1,31 +1,23 @@
 package main.java.com.hellBoard.model;
 
+import main.java.com.hellBoard.util.db.H2DriverDataSource;
+
 import javax.sql.DataSource;
 
 /**
  * Created by woollymn on 16. 8. 2.
  */
 public class DaoFactory {
-    private static DaoFactory instance;
-
-    private DaoFactory() {}
 
     public UserDao userDao() {
-        return UserDao.userDao(this.dataSource());
+        return (UserDao) new Dao(this.dataSource());
     }
 
     public ContentDao contentDao() {
-        return new ContentDao();
+        return (ContentDao) new Dao(this.dataSource());
     }
 
     private DataSource dataSource() {
-        return new H2DriverDataSource();
-    }
-    public static DaoFactory getInstance() {
-        if (instance == null) {
-            instance = new DaoFactory();
-        }
-
-        return instance;
+        return H2DriverDataSource.getInstance();
     }
 }

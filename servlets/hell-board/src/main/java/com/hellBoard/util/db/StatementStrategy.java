@@ -1,4 +1,4 @@
-package main.java.com.hellBoard.model;
+package main.java.com.hellBoard.util.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

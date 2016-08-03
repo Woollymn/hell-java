@@ -8,24 +8,16 @@ import java.util.List;
 /**
  * Created by hkkang on 2016. 7. 27..
  */
-public class ContentDao {
-    private DataSource dataSource;
+public class ContentDao extends Dao {
 
-    public ContentDao() {
-
-    }
-
-    public ContentDao(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public static Content createContent(Content content) {
-        Content.getInstance().add(content);
+    public Content createContent(Content content) {
+        //Content.getInstance().add(content);
+        this.jdbcContext.executeSqlFromObject("", content);
 
         return content;
     }
 
-    public static Content findContentByContentNo(long contentNo) {
+    public Content findContentByContentNo(long contentNo) {
         List<Content> contents = Content.getInstance();
 
         for(Content content : contents) {
@@ -37,17 +29,17 @@ public class ContentDao {
         return null;
     }
 
-    public static Content updateContent(Content updatedContent) {
+    public Content updateContent(Content updatedContent) {
         long contentNo = updatedContent.getContentNo();
 
-        ContentDao.deleteContentByContentNo(contentNo);
-        ContentDao.createContent(updatedContent);
+        this.deleteContentByContentNo(contentNo);
+        this.createContent(updatedContent);
 
-        return ContentDao.findContentByContentNo(contentNo);
+        return this.findContentByContentNo(contentNo);
     }
 
-    public static boolean deleteContentByContentNo(long contentNo) {
-        Content content = ContentDao.findContentByContentNo(contentNo);
+    public boolean deleteContentByContentNo(long contentNo) {
+        Content content = this.findContentByContentNo(contentNo);
 
         return Content.getInstance().remove(content);
     }

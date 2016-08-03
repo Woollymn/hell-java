@@ -1,4 +1,4 @@
-package main.java.com.hellBoard.model;
+package main.java.com.hellBoard.util.db;
 
 import org.h2.jdbcx.JdbcConnectionPool;
 
@@ -13,9 +13,21 @@ import java.util.logging.Logger;
  * Created by woollymn on 16. 8. 2.
  */
 public class H2DriverDataSource implements DataSource {
+    private static H2DriverDataSource INSTANCE;
+
     final private String URL = "jdbc:h2:~/test";
     final private String USERNAME = "sa";
     final private String PASSWORD = "";
+
+    private H2DriverDataSource () {}
+
+    public static H2DriverDataSource getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new H2DriverDataSource();
+        }
+
+        return INSTANCE;
+    }
 
     @Override
     public Connection getConnection() throws SQLException {
