@@ -15,8 +15,8 @@ public class ContentDao extends Dao {
     }
 
     public Content createContent(Content content) {
-        //Content.getInstance().add(content);
-        this.jdbcContext.executeSqlFromObject("", content);
+        Content.getInstance().add(content);
+        //this.jdbcContext.executeSqlFromObject("", content);
 
         return content;
     }
