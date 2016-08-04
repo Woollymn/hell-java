@@ -28,6 +28,8 @@ public class JdbcContext {
 
             ResultSet rs = ps.executeQuery();
 
+            rs.next();
+
             user = new User(rs.getLong("userNo"),
                     rs.getString("userId"),
                     rs.getString("password"),

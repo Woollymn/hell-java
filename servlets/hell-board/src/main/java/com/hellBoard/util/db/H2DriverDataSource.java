@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class H2DriverDataSource implements DataSource {
     private static H2DriverDataSource INSTANCE;
 
-    final private String URL = "jdbc:h2:~/test";
+    final private String URL = "jdbc:h2:tcp://localhost/~/test";
     final private String USERNAME = "sa";
     final private String PASSWORD = "";
 

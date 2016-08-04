@@ -40,6 +40,7 @@ public class LoginAction extends Action {
             User user = loginService.findByPassword(signInId, signInPassword);
 
             if (user != null) {
+                System.out.println("#####" + user.getUserName());
                 req.getSession().setAttribute("user", user);
 
                 return "list/redirect.jsp";
