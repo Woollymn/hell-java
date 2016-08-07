@@ -5,9 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="memberDao" class="spring.MemberDao"></bean>
-    <bean id="memberPrinter" class="spring.MemberPrinter"></bean>
-
     <bean id="memberRegSvc" class="spring.MemberRegisterService">
         <constructor-arg ref="memberDao" />
     </bean>
@@ -25,4 +22,12 @@
         <property name="memberDao" ref="memberDao" />
         <property name="printer" ref="memberPrinter" />
     </bean>
+
+    <bean id="versionPrinter" class="spring.VersionPrinter">
+        <property name="majorVersion" value="4" />
+        <property name="minorVersion">
+            <value>1</value>
+        </property>
+    </bean>
+
 </beans>
