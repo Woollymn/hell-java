@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sp4-chap02.iml" filepath="$PROJECT_DIR$/.idea/modules/sp4-chap02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sp4-chap02_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sp4-chap02_main.iml" group="sp4-chap02" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sp4-chap02_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sp4-chap02_test.iml" group="sp4-chap02" />
+    </modules>
+  </component>
+</project>
