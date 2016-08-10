@@ -1,14 +1,19 @@
 package spring;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 public class MemberRegisterService {
 
+    @Resource(name="memberDao")
     private MemberDao memberDao;
 
+    //@Autowired
     public MemberRegisterService(MemberDao memberDao) {
         this.memberDao = memberDao;
     }
+
+    public MemberRegisterService() {}
 
     public void regist(RegisterRequest req) {
         Member member = memberDao.selectByEmail(req.getEmail());

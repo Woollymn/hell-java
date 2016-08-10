@@ -1,7 +1,10 @@
 package spring;
 
+import javax.annotation.Resource;
+
 public class MemberInfoPrinter {
 
+    @Resource(name="memberDao")
     private MemberDao memberDao;
     private MemberPrinter printer;
 
@@ -9,6 +12,7 @@ public class MemberInfoPrinter {
         this.memberDao = memberDao;
     }
 
+    @Resource(name="memberPrinter")
     public void setPrinter(MemberPrinter printer) {
         this.printer = printer;
     }
