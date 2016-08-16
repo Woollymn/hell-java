@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="content" class="com.hell_board.entity.Content"></bean>
+    <bean id="user" class="com.hell_board.entity.User"></bean>
+    <bean id="memberDao" class="com.hell_board.dao.MemberDao"></bean>
+
+    <bean id="memberRegisterService" class="com.hell_board.service.MemberRegisterService">
+        <constructor-arg ref="memberDao" />
+    </bean>
+
+    <bean id="changePasswordService" class="com.hell_board.service.ChangePasswordService">
+        <constructor-arg ref="memberDao" />
+    </bean>
+
+</beans>

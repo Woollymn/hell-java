@@ -1,0 +1,21 @@
+group 'com.hell-board'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.2.RELEASE'
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0-b01'
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.192'
+
+    //testCompile 'junit:junit:4.12'
+}
