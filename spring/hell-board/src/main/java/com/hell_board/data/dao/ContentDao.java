@@ -1,17 +1,18 @@
-package com.hell_board.dao;
+package com.hell_board.data.dao;
 
-import main.java.com.hellBoard.entity.Content;
+
+import com.hell_board.data.domain.Content;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-/**
- * Created by hkkang on 2016. 7. 27..
- */
-public class ContentDao extends Dao {
+public class ContentDao {
+
+    private JdbcTemplate jdbcTemplate;
 
     public ContentDao(DataSource dataSource) {
-        super(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Content createContent(Content content) {

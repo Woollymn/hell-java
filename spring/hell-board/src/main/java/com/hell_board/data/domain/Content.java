@@ -1,12 +1,9 @@
-package com.hell_board.entity;
+package com.hell_board.data.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hkkang on 2016. 7. 27..
- */
 public class Content {
     private static List<Content> list = new ArrayList();
 
@@ -20,7 +17,7 @@ public class Content {
     private LocalDateTime registrationDateTime;
     private long viewCount;
 
-    private Content() {}
+    public Content() {}
 
     public Content(String userId,
                    String subject,

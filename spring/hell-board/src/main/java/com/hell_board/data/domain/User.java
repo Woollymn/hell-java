@@ -1,4 +1,4 @@
-package com.hell_board.entity;
+package com.hell_board.data.domain;
 
 import java.util.HashSet;
 import java.util.Set;

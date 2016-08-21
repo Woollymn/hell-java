@@ -1,16 +1,15 @@
 package com.hell_board.service;
 
-import main.java.com.hellBoard.entity.User;
-import main.java.com.hellBoard.model.DaoFactory;
-import main.java.com.hellBoard.model.UserDao;
+import com.hell_board.data.dao.UserDao;
+import com.hell_board.data.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 
-/**
- * Created by hkkang on 2016. 7. 27..
- */
 public class JoinService {
-    private UserDao userDao = new DaoFactory().userDao();
+
+    @Autowired
+    private UserDao userDao;
 
     public User addUser(String signUpId,
                         String signUpPassword,

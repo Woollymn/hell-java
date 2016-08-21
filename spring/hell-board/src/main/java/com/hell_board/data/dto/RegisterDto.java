@@ -1,4 +1,4 @@
-package com.hell_board.dto;
+package com.hell_board.data.dto;
 
 public class RegisterDto {
 

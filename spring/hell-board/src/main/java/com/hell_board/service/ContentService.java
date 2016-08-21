@@ -1,16 +1,16 @@
 package com.hell_board.service;
 
-import main.java.com.hellBoard.entity.Content;
-import main.java.com.hellBoard.model.ContentDao;
-import main.java.com.hellBoard.model.DaoFactory;
+
+import com.hell_board.data.dao.ContentDao;
+import com.hell_board.data.domain.Content;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-/**
- * Created by hkkang on 2016. 7. 27..
- */
 public class ContentService {
-    private ContentDao contentDao = new DaoFactory().contentDao();
+
+    @Autowired
+    private ContentDao contentDao;
 
     public Content createContent(Content newContent) {
         return this.contentDao.createContent(newContent);

@@ -1,4 +1,4 @@
-package com.hell_board.filter;
+package com.hell_board.config.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
