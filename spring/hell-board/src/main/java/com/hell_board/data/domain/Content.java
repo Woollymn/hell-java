@@ -7,30 +7,27 @@ import java.util.List;
 public class Content {
     private static List<Content> list = new ArrayList();
 
-    // List.add가 되었을 때 자동으로 +1 되는 방법은 없을까?
-    public static long currentContentNo = 0L;
-
     private long contentNo;
     private String userId;
     private String subject;
     private String text;
-    private LocalDateTime registrationDateTime;
+    private LocalDateTime registerDateTime;
     private long viewCount;
 
     public Content() {}
 
-    public Content(String userId,
-                   String subject,
-                   String text,
-                   LocalDateTime registrationDateTime) {
+    public Content(long contentNo, String userId, String subject, String text, LocalDateTime registerDateTime, long viewCount) {
+        this(userId, subject, text, registerDateTime);
+        this.contentNo = contentNo;
+        this.viewCount = viewCount;
+    }
 
-        Content.currentContentNo++;
-        this.contentNo = Content.currentContentNo;
+    public Content(String userId, String subject, String text, LocalDateTime registrationDateTime) {
+
         this.userId = userId;
         this.subject = subject;
         this.text = text;
-        this.registrationDateTime = registrationDateTime;
-        this.viewCount = 0L;
+        this.registerDateTime = registrationDateTime;
     }
 
     public static List<Content> getInstance() {
@@ -65,12 +62,12 @@ public class Content {
         this.text = text;
     }
 
-    public LocalDateTime getRegistrationDateTime() {
-        return registrationDateTime;
+    public LocalDateTime getRegisterDateTime() {
+        return registerDateTime;
     }
 
-    public void setRegistrationDateTime(LocalDateTime registrationDateTime) {
-        this.registrationDateTime = registrationDateTime;
+    public void setRegisterDateTime(LocalDateTime registerDateTime) {
+        this.registerDateTime = registerDateTime;
     }
 
     public Long getViewCount() {

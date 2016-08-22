@@ -7,13 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 public class ContentService {
 
     @Autowired
     private ContentDao contentDao;
 
-    public Content createContent(Content newContent) {
-        return this.contentDao.createContent(newContent);
+    public int createContent(Content newContent) {
+        return this.contentDao.create(newContent);
     }
 
     public List<Content> findAll() {
@@ -27,7 +29,7 @@ public class ContentService {
     public Content viewContentByContentNo(long contentNo) {
         Content content = this.contentDao.findContentByContentNo(contentNo);
 
-        if (content != null) {
+        if (isNull(content)) {
             long viewCount = content.getViewCount() + 1;
             content.setViewCount(viewCount);
         }
@@ -35,11 +37,11 @@ public class ContentService {
         return content;
     }
 
-    public void updateContent(Content content) {
-        this.contentDao.updateContent(content);
+    public int update(Content content) {
+        return this.contentDao.update(content);
     }
 
-    public boolean deleteContentByContentNo(long contentNo) {
-        return this.contentDao.deleteContentByContentNo(contentNo);
+    public int delete(Content content) {
+        return this.contentDao.delete(content);
     }
 }

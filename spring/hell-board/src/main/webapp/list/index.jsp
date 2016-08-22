@@ -36,7 +36,7 @@
                                     <td>${content.contentNo}</td>
                                     <td>${content.subject}</td>
                                     <td>${content.userId}</td>
-                                    <td>${content.registrationDateTime}</td>
+                                    <td>${content.registerDateTime}</td>
                                     <td>${content.viewCount}</td>
                                 </tr>
                             </c:forEach>

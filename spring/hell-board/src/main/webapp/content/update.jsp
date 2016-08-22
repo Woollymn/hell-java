@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <th class="active">작성시간</th>
-                            <td colspan="3">${content.registrationDateTime}</td>
+                            <td colspan="3">${content.registerDateTime}</td>
                         </tr>
                     </tbody>
                 </table>

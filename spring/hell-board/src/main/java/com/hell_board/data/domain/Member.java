@@ -8,7 +8,7 @@ public class Member {
     private String email;
     private String password;
     private String name;
-    private LocalDateTime registerDate;
+    private LocalDateTime registerDateTime;
 
     public Member(Long id, String email, String password, String name, LocalDateTime registerDate) {
         this(email, password, name, registerDate);
@@ -19,7 +19,7 @@ public class Member {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.registerDate = registerDate;
+        this.registerDateTime = registerDate;
     }
 
     public Long getId() {
@@ -42,7 +42,7 @@ public class Member {
         return name;
     }
 
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
+    public LocalDateTime getRegisterDateTime() {
+        return registerDateTime;
     }
 }

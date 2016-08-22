@@ -5,7 +5,7 @@ import com.hell_board.data.domain.Content;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class ContentDao {
 
@@ -15,37 +15,82 @@ public class ContentDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Content createContent(Content content) {
-        Content.getInstance().add(content);
-        //this.jdbcContext.executeSqlFromObject("", content);
+    public int create(Content content) {
+        return this.jdbcTemplate.update(
+                String.join("\n"
+                        , "INSERT INTO PUBLIC.CONTENT ("
+                        , "       userId"
+                        , "       subject"
+                        , "       text"
+                        , "       registerDateTime"
+                        , "       viewCount"
+                        , "     ) "
+                        , "VALUES (?, ?, ?, ?, ?)"
+                ),
 
-        return content;
+                content.getUserId(),
+                content.getSubject(),
+                content.getText(),
+                content.getRegisterDateTime(),
+                content.getViewCount()
+        );
     }
 
-    public Content findContentByContentNo(long contentNo) {
-        List<Content> contents = Content.getInstance();
+    public Content findContentByContentNo(final long contentNo) {
+        return this.jdbcTemplate.queryForObject(
+                String.join("\n"
+                        , "SELECT contentNo"
+                        , "     , userId"
+                        , "     , subject"
+                        , "     , text"
+                        , "     , registerDateTime"
+                        , "     , viewCount"
+                        , "  FROM PUBLIC.CONTENT"
+                        , " WHERE contentNo = ?"
+                ),
 
-        for(Content content : contents) {
-            if (contentNo == content.getContentNo()) {
-                return content;
-            }
-        }
+                (resultSet, rowNum) -> {
+                    Content content = new Content(
+                            resultSet.getLong("contentNo"),
+                            resultSet.getString("userId"),
+                            resultSet.getString("subject"),
+                            resultSet.getString("text"),
+                            LocalDateTime.parse(resultSet.getString("registerDateTime")),
+                            resultSet.getLong("viewCount")
+                    );
 
-        return null;
+                    return content;
+                },
+
+                contentNo
+        );
     }
 
-    public Content updateContent(Content updatedContent) {
-        long contentNo = updatedContent.getContentNo();
+    public int update(final Content content) {
+        return this.jdbcTemplate.update(
+                String.join("\n"
+                        , "UPDATE PUBLIC.CONTENT"
+                        , "   SET subject = ?"
+                        , "     , text = ?"
+                        , "     , viewCount = ?"
+                        , " WHERE contentNo = ?"
+                ),
 
-        this.deleteContentByContentNo(contentNo);
-        this.createContent(updatedContent);
-
-        return this.findContentByContentNo(contentNo);
+                content.getSubject(),
+                content.getText(),
+                content.getViewCount(),
+                content.getContentNo()
+        );
     }
 
-    public boolean deleteContentByContentNo(long contentNo) {
-        Content content = this.findContentByContentNo(contentNo);
+    public int delete(final Content content) {
+        return this.jdbcTemplate.update(
+                String.join("\n"
+                        , "DELETE PUBLIC.CONTENT"
+                        , " WHERE contentNo = ?"
+                ),
 
-        return Content.getInstance().remove(content);
+                content.getContentNo()
+        );
     }
 }

@@ -21,7 +21,7 @@ public class MemberDao {
                         , "     , email"
                         , "     , name"
                         , "     , password"
-                        , "     , registerDate"
+                        , "     , registerDateTime"
                         , "  FROM PUBLIC.MEMBER"
                         , " WHERE email = ?"
                 ),
@@ -32,7 +32,7 @@ public class MemberDao {
                             resultSet.getString("email"),
                             resultSet.getString("password"),
                             resultSet.getString("name"),
-                            LocalDateTime.parse(resultSet.getString("registerDate"))
+                            LocalDateTime.parse(resultSet.getString("registerDateTime"))
                     );
 
                     return member;
@@ -49,7 +49,7 @@ public class MemberDao {
                         , "       email"
                         , "     , name"
                         , "     , password"
-                        , "     , registerDate"
+                        , "     , registerDateTime"
                         , "     ) "
                         , "VALUES (?, ?, ?, ?)"
                 ),
@@ -57,7 +57,7 @@ public class MemberDao {
                 member.getEmail(),
                 member.getName(),
                 member.getPassword(),
-                member.getRegisterDate()
+                member.getRegisterDateTime()
         );
     }
 
@@ -84,6 +84,7 @@ public class MemberDao {
                         , "DELETE PUBLIC.MEMBER"
                         , " WHERE id = ?"
                 ),
+
                 member.getId()
         );
     }

@@ -7,7 +7,7 @@ public class SignUpRequest {
     private String name;
     private String password;
     private String confirmedPassword;
-    private LocalDateTime registerDate;
+    private LocalDateTime registerDateTime;
 
     public String getEmail() {
         return email;
@@ -41,11 +41,11 @@ public class SignUpRequest {
         this.confirmedPassword = confirmedPassword;
     }
 
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
+    public LocalDateTime getRegisterDateTime() {
+        return registerDateTime;
     }
 
-    public void setRegisterDate(LocalDateTime registerDate) {
-        this.registerDate = registerDate;
+    public void setRegisterDateTime(LocalDateTime registerDateTime) {
+        this.registerDateTime = registerDateTime;
     }
 }
