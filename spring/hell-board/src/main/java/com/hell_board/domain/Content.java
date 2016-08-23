@@ -1,4 +1,4 @@
-package com.hell_board.data.domain;
+package com.hell_board.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ public class Content {
     private static List<Content> list = new ArrayList();
 
     private long contentNo;
-    private String userId;
+    private String email;
     private String subject;
     private String text;
     private LocalDateTime registerDateTime;
@@ -16,15 +16,15 @@ public class Content {
 
     public Content() {}
 
-    public Content(long contentNo, String userId, String subject, String text, LocalDateTime registerDateTime, long viewCount) {
-        this(userId, subject, text, registerDateTime);
+    public Content(long contentNo, String email, String subject, String text, LocalDateTime registerDateTime, long viewCount) {
+        this(email, subject, text, registerDateTime);
         this.contentNo = contentNo;
         this.viewCount = viewCount;
     }
 
-    public Content(String userId, String subject, String text, LocalDateTime registrationDateTime) {
+    public Content(String email, String subject, String text, LocalDateTime registrationDateTime) {
 
-        this.userId = userId;
+        this.email = email;
         this.subject = subject;
         this.text = text;
         this.registerDateTime = registrationDateTime;
@@ -38,12 +38,12 @@ public class Content {
         return contentNo;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSubject() {

@@ -24,7 +24,7 @@
                         </tr>
                         <tr>
                             <th class="active">작성자</th>
-                            <td colspan="3">${requestScope.content.userId}</td>
+                            <td colspan="3">${requestScope.content.email}</td>
                         </tr>
                     </tbody>
                 </table>

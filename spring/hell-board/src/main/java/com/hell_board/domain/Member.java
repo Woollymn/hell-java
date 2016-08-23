@@ -1,4 +1,4 @@
-package com.hell_board.data.domain;
+package com.hell_board.domain;
 
 import java.time.LocalDateTime;
 
@@ -9,6 +9,8 @@ public class Member {
     private String password;
     private String name;
     private LocalDateTime registerDateTime;
+
+    public Member() {}
 
     public Member(Long id, String email, String password, String name, LocalDateTime registerDate) {
         this(email, password, name, registerDate);

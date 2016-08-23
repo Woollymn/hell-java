@@ -1,8 +1,8 @@
 package com.hell_board.service;
 
 
-import com.hell_board.data.dao.ContentDao;
-import com.hell_board.data.domain.Content;
+import com.hell_board.dao.ContentDao;
+import com.hell_board.domain.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class ContentService {
     public Content viewContentByContentNo(long contentNo) {
         Content content = this.contentDao.findContentByContentNo(contentNo);
 
-        if (isNull(content)) {
+        if (!isNull(content)) {
             long viewCount = content.getViewCount() + 1;
             content.setViewCount(viewCount);
         }
@@ -41,7 +41,7 @@ public class ContentService {
         return this.contentDao.update(content);
     }
 
-    public int delete(Content content) {
-        return this.contentDao.delete(content);
+    public int delete(long contentNo) {
+        return this.contentDao.delete(contentNo);
     }
 }

@@ -32,7 +32,7 @@
                         </tr>
                         <tr>
                             <th class="active">작성자</th>
-                            <td colspan="3">${content.userId}</td>
+                            <td colspan="3">${content.email}</td>
                         </tr>
                         <tr>
                             <th class="active">작성시간</th>

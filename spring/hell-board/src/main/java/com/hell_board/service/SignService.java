@@ -1,10 +1,10 @@
 package com.hell_board.service;
 
-import com.hell_board.config.exception.AlreadyExistingMemberException;
-import com.hell_board.config.exception.IdPasswordNoMatchingException;
-import com.hell_board.config.exception.MemberNotFoundException;
-import com.hell_board.data.dao.MemberDao;
-import com.hell_board.data.domain.Member;
+import com.hell_board.exception.AlreadyExistingMemberException;
+import com.hell_board.exception.IdPasswordNoMatchingException;
+import com.hell_board.exception.MemberNotFoundException;
+import com.hell_board.dao.MemberDao;
+import com.hell_board.domain.Member;
 import com.hell_board.data.request.SignInRequest;
 import com.hell_board.data.request.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;

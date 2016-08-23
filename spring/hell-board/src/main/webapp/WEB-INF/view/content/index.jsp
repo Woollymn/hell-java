@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="table-responsive col-xs-10 col-md-10 col-sm-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1">
-            <c:if test="${content.userId == sessionScope.user.userId}">
+            <c:if test="${content.email == sessionScope.user.email}">
                 <div class="text-right">
                     <a class="btn btn-info btn-sm" href="/content/update?contentNo=${content.contentNo}" role="button">수정</a>
                     &nbsp;
@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <th class="active">작성자</th>
-                        <td colspan="3">${content.userId}</td>
+                        <td colspan="3">${content.email}</td>
                     </tr>
                     <tr>
                         <th class="active">작성시간</th>

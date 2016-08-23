@@ -1,6 +1,6 @@
-package com.hell_board.data.dao;
+package com.hell_board.dao;
 
-import com.hell_board.data.domain.Member;
+import com.hell_board.domain.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;

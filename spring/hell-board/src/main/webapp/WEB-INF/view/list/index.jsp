@@ -35,7 +35,7 @@
                                 <tr onclick="javascript:location.href='/content?contentNo=${content.contentNo}'">
                                     <td>${content.contentNo}</td>
                                     <td>${content.subject}</td>
-                                    <td>${content.userId}</td>
+                                    <td>${content.email}</td>
                                     <td>${content.registerDateTime}</td>
                                     <td>${content.viewCount}</td>
                                 </tr>

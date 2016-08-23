@@ -1,7 +1,7 @@
-package com.hell_board.data.dao;
+package com.hell_board.dao;
 
 
-import com.hell_board.data.domain.Content;
+import com.hell_board.domain.Content;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -28,7 +28,7 @@ public class ContentDao {
                         , "VALUES (?, ?, ?, ?, ?)"
                 ),
 
-                content.getUserId(),
+                content.getEmail(),
                 content.getSubject(),
                 content.getText(),
                 content.getRegisterDateTime(),
@@ -83,14 +83,14 @@ public class ContentDao {
         );
     }
 
-    public int delete(final Content content) {
+    public int delete(final long contentNo) {
         return this.jdbcTemplate.update(
                 String.join("\n"
                         , "DELETE PUBLIC.CONTENT"
                         , " WHERE contentNo = ?"
                 ),
 
-                content.getContentNo()
+                contentNo
         );
     }
 }

@@ -1,4 +1,4 @@
-package com.hell_board.config.exception;
+package com.hell_board.exception;
 
 public class MemberNotFoundException extends RuntimeException {
 }
