@@ -2,9 +2,12 @@ package com.hell_board.service;
 
 
 import com.hell_board.dao.ContentDao;
+import com.hell_board.data.request.ContentRequest;
 import com.hell_board.domain.Content;
+import com.hell_board.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -14,8 +17,21 @@ public class ContentService {
     @Autowired
     private ContentDao contentDao;
 
-    public int createContent(Content newContent) {
-        return this.contentDao.create(newContent);
+    public int create(Member member, ContentRequest contentRequest) {
+
+        int resultCount = 0;
+
+        if (!isNull(member)) {
+            String email = contentRequest.getEmail();
+            String subject = contentRequest.getSubject();
+            String text = contentRequest.getText();
+            LocalDateTime registerDateTime = contentRequest.getRegisterDateTime();
+
+            Content content = new Content(email, subject, text, registerDateTime);
+            resultCount = this.contentDao.create(content);
+        }
+
+        return resultCount;
     }
 
     public List<Content> findAll() {
@@ -37,7 +53,15 @@ public class ContentService {
         return content;
     }
 
-    public int update(Content content) {
+    public int update(ContentRequest contentRequest) {
+        long contentNo = contentRequest.getContentNo();
+        String subject = contentRequest.getSubject();
+        String text = contentRequest.getText();
+
+        Content content = this.findContentByContentNo(contentNo);
+        content.setSubject(subject);
+        content.setText(text);
+
         return this.contentDao.update(content);
     }
 

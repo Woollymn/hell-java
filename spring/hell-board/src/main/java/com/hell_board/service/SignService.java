@@ -9,6 +9,8 @@ import com.hell_board.data.request.SignInRequest;
 import com.hell_board.data.request.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+
 import static java.util.Objects.isNull;
 
 public class SignService {
@@ -21,6 +23,7 @@ public class SignService {
         String password = signUpRequest.getPassword();
         String confirmedPassword = signUpRequest.getConfirmedPassword();
         Member member = memberDao.findByEmail(email);
+        LocalDateTime now = LocalDateTime.now();
 
         if (!isNull(member)) {
             throw new AlreadyExistingMemberException("이미 등록된 사용자입니다 : " + email);
@@ -31,7 +34,7 @@ public class SignService {
                     signUpRequest.getEmail(),
                     signUpRequest.getPassword(),
                     signUpRequest.getName(),
-                    signUpRequest.getRegisterDateTime()
+                    now
                     );
 
             return memberDao.insert(newMember);

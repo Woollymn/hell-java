@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import java.time.LocalDateTime;
-
 import static java.util.Objects.isNull;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -47,14 +45,8 @@ public class ContentController {
     public String create(@SessionAttribute(name = "member", required = false) Member member,
                          ContentRequest contentRequest) {
 
-        if (!isNull(member)) {
-            String email = contentRequest.getEmail();
-            String subject = contentRequest.getSubject();
-            String text = contentRequest.getText();
-            LocalDateTime registerDateTime = contentRequest.getRegisterDateTime();
-
-            this.contentService.createContent(new Content(email, subject, text, registerDateTime));
-        }
+        // try catch
+        this.contentService.create(member, contentRequest);
 
         return "redirect:/list/index";
     }
@@ -78,15 +70,8 @@ public class ContentController {
     public String update(ContentRequest contentRequest,
                          Model model) {
 
-        long contentNo = contentRequest.getContentNo();
-        String subject = contentRequest.getSubject();
-        String text = contentRequest.getText();
-
-        Content content = this.contentService.findContentByContentNo(contentNo);
-        content.setSubject(subject);
-        content.setText(text);
-
-        this.contentService.update(content);
+        // try catch
+        this.contentService.update(contentRequest);
 
         return "redirect:/list";
     }
@@ -94,6 +79,7 @@ public class ContentController {
     @RequestMapping(value = "/delete", method = {GET, POST})
     public String delete(@RequestParam(value = "contentNo") long contentNo) {
 
+        // try catch
         int result = this.contentService.delete(contentNo);
 
         if (result == 0) {
