@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ContentDao {
 
@@ -33,6 +34,33 @@ public class ContentDao {
                 content.getText(),
                 content.getRegisterDateTime(),
                 content.getViewCount()
+        );
+    }
+
+    public List<Content> findAll() {
+        return this.jdbcTemplate.query(
+                String.join("\n"
+                        , "SELECT contentNo"
+                        , "     , email"
+                        , "     , subject"
+                        , "     , text"
+                        , "     , registerDateTime"
+                        , "     , viewCount"
+                        , "  FROM PUBLIC.CONTENT"
+                ),
+
+                (resultSet, rowNum) -> {
+                    Content content = new Content(
+                            resultSet.getLong("contentNo"),
+                            resultSet.getString("userId"),
+                            resultSet.getString("subject"),
+                            resultSet.getString("text"),
+                            LocalDateTime.parse(resultSet.getString("registerDateTime")),
+                            resultSet.getLong("viewCount")
+                    );
+
+                    return content;
+                }
         );
     }
 
